@@ -1,0 +1,134 @@
+
+p{
+    font-family: 'Open Sans', sans-serif;
+    display: inline;
+
+
+}
+
+
+/*ICON*/
+.fa-trash:hover {
+    color: orangered;
+
+}
+
+
+#f_table_leg img{
+   height: 3em;
+
+}
+
+.img-responsive{
+    display: inline;
+    height: 2em;
+}
+#left{
+    height: 1500px;
+    background-color:dimgrey;
+    color: aliceblue;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.nav li:hover a {
+    border: none;
+    background: none;
+    color: #00adee;
+}
+
+.well{
+    background-color: white;
+}
+
+.nav li i,.nav li p{
+    color: aliceblue;
+}
+
+#right{
+                font-family: 'Open Sans', sans-serif;
+    background-color:#f2f2f2
+;
+    height: 1500px;
+
+}
+
+
+.col-sm-2{
+        font-family: 'Open Sans', sans-serif;
+
+    
+}
+
+.navbar navbar-inverse navbar-fixed-top{
+    outline-style: none;
+    border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+}
+#btn_left{
+    width: 100%;
+    color: lightgrey;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    padding: 0.8em;
+
+}
+
+#top{
+    background-color:white;
+    padding: 0.3em;
+    
+}
+
+
+.btn-link{
+    display: inline;
+    float: left;
+}
+
+h2 {
+
+
+}
+.title{
+    display: inline; 
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+
+}
+
+.openSan{
+        font-family: 'Open Sans', sans-serif;
+    color: white;
+
+
+}
+
+body {
+	padding-top:50px;
+}
+
+@media (min-width: 979px) {
+
+  #midCol.affix-top {
+      position:fixed;
+  	  width:265px;
+  	  margin-right:10px;
+  	  
+  }
+  
+  #midCol.affix {
+      position:static;
+      width:100%;
+  }
+
+}
+
+@media (min-width: 767px) {
+  .affix,.affix-top {
+      position:fixed;
+  }
+}
+
+

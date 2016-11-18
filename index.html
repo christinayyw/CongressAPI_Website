@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/11c8a1e586.js"></script>
+        
+<!--PAGE EXAMPLE-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="http://codemirror.net/theme/twilight.css" />
+    <link rel="stylesheet" type="text/css" href="http://codemirror.net/theme/midnight.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.css">
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.20.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://rawgithub.com/angular-ui/ui-codemirror/bower/ui-codemirror.min.js"></script>
+    <script src="http://codemirror.net/mode/xml/xml.js"></script>
+    <script src="js/dirPagination.js"></script>
+    <script src="js/script.js"></script>
+    
+    
+    <!--my css-->
+    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/script.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+
+
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
+    
+<!--    progress bar-->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script>
+
+
+<script>
+    
+    $("#menuBtn").click(function(){
+        $(".container-fluid").hide();
+    });
+
+
+    
+    </script>
+
+
+<title>Congress API</title>
+<script>
+$(document).ready(function(){
+    $("#menuBtn").click(function(){
+        $("#left").toggle();
+    });
+});
+</script>
+<style>
+.main {
+    font-size: 120%;
+    color: red;
+}
+</style>
+</head>
+<body ng-app="data" ng-controller="data" >
+    
+    <div class="container-fluid">
+
+
+
+    <div class="row">
+<!-- -----TOP NAV BAR------------------------------------------------------->
+        <div id="top" class="navbar navbar-fixed-top" style="background-color:white;">
+            
+        <button type="button" class="btn-link" id="menuBtn">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+            <center>
+                <a href="http://sunlightfoundation.com/" target="_blank"><img src="images/logo.png" class="img-responsive" alt="logo"></a>
+                <p class="title">Congress API</p>
+                
+
+            </center>
+
+
+        </div>
+    </div>
+        
+<!-- ----END-TOP NAV BAR------------------------------------------------------->
+  
+        
+        
+    <!-- Content -->
+<div class="container-fluid">
+  	<div class="row">
+    <!-- ----LEGT NAV BAR------------------------------------------------------->
+
+            <div class="col-sm-2" id="left">
+
+          <ul id="sidebar" class="nav nav-stacked affix">
+            <li><a href="#" onclick="leg();"> <i class="fa fa-user" aria-hidden="true" ><p>  Legislators</p></i>  </a></li>
+            <li><a href="#" onclick="bill();"><i class="fa fa-file-o" aria-hidden="true" class="openSan"></i>  <p>  Bills</p></a></li>
+            <li><a href="#" onclick="com();"><i class="fa fa-sign-in" aria-hidden="true" class="openSan"></i>  <p>  Committees</p></a></li>
+            <li><a href="#" onclick="fav();"><i class="fa fa-star" aria-hidden="true" class="openSan"></i>  <p>  Favorites</p></a></li>
+              
+        </ul>
+    </div>
+   <!-- --END--LEGT NAV BAR------------------------------------------------------->
+
+        <div id="page_leg">
+            <div class="col-sm-9"  id="right" >
+            <h1>Legislator</h1>
+            <div>
+
+              <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#state" aria-controls="state" role="tab" data-toggle="tab">By State</a></li>
+                    <li role="presentation"><a href="#House" aria-controls="House" role="tab" data-toggle="tab">House</a></li>
+                    <li role="presentation"><a href="#Senate" aria-controls="Senate" role="tab" data-toggle="tab">Senate</a></li>
+                  </ul>
+
+<!-- Tab panes -->
+                
+<!--        STATE TAB-->
+   <div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="state">
+                        
+                            <div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div style="" class="well">
+               <div style="background-color:#f2f2f2;" class="well">
+
+                        <h4 style="display:inline;">Legislator By State</h4>
+                        <select style="float: right;" ng-init="selectedName = names[0]"  ng-model="selectedName" ng-options="x for x in names">
+                        </select>
+            </div>
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:1000px; overflow-y:auto">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Party</th>
+                        <th>Name</th>
+                        <th>Chamber </th>
+                        <th> Distrct</th>
+                        <th>State</th>
+                        <th> Button</th>
+                    </tr>
+                    <tr dir-paginate="x in population | orderBy:[sortType,sortType2] | filter:selectedName | itemsPerPage:10"  pagination-id="population">
+                        <td><div id="party">
+                            <img src="images/{{x.party}}.png" class="img-responsive" alt="N.A.">
+                            
+                        </div></td>
+                        <td>{{x.last_name+", "+x.first_name}}</td>
+                        <td>
+                            <img src="images/{{x.chamber}}.png" class="img-responsive" alt="N.A.">
+                            {{x.chamber}}
+                            </td>
+                        <td>District {{x.district}}</td>
+                        <td>{{x.state_name}}</td>
+                        <td><button type="button" ng-click="detail(x.bioguide_id,x.title,x.first_name,x.last_name,x.oc_email,x.chamber,x.phone,x.party,x.term_start,x.term_end,x.office,x.state_name,x.fax,x.birthday,x.twitter_id,x.facebook_id,x.website)" class="btn btn-primary" class="carousel-control left" href="#myCarousel" data-slide="next">View Details</button></td>
+
+                    </tr>
+                </table>
+        <center>
+                    <dir-pagination-controls max-size="10" boundary-links="true" direction-links="true" pagination-id="population"></dir-pagination-controls>
+                </center>
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+<!--      start Carousel ITEM 2(DETAIL PAGE)-->
+    <div class="item">
+      <div class="well">
+        
+
+        <button type="button" class="btn btn-default" class="carousel-control left" href="#myCarousel3" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+          
+          
+         <h4 style="display:inline;">Details</h4>
+        <button type="button" onclick="fav_btn();" style="float: right;"  class="btn btn-default">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+
+        </button>
+
+          <br>
+                    <br>
+          
+
+          <div style="display:inline;" class="l_bioguide_id"></div>
+          
+<!--          first top small table detail info-->
+          <table style="display:inline;" class="table table-hover">
+              <tr><td> <div class="l_name"></div></td>
+              </tr>
+              <tr><td> <div class="l_email"></div></td>
+              </tr>
+
+              <tr><td> Chamber:<div class="l_chamber"></div></td>
+              </tr>
+              
+                <tr><td> <div class="l_phone"></div></td>
+              </tr>
+              
+                <tr><td> <div class="l_party"></div></td>
+              </tr>
+          </table>
+          
+                    <br>
+<!--          SECOND bottom  table detail info-->
+          <table style="" class="table table-hover">
+              <tr><th>Start Term</th>
+                  <td> <div class="l_start"></div></td>
+              </tr>
+              <tr><th>End Term</th><td> <div class="l_end"></div></td>
+              </tr>
+
+              <tr><th>Term</th><td> <div class="l_term">
+                    
+                  </div></td>
+              </tr>
+              
+                <tr><th>Office</th><td> <div class="l_office"></div></td>
+              </tr>
+              
+                <tr><th>State</th><td> <div class="l_state"></div></td>
+              </tr>
+              <tr><th>Fax</th><td> <div class="l_fax"></div></td>
+              </tr>
+                <tr><th>Birthday</th><td> <div class="l_bday"></div></td>
+              </tr>
+               <tr><th>Social Links</th><td> <div class="l_social"></div></td>
+              </tr>
+
+          </table>
+
+        </div>
+      </div>    
+<!--      end Carousel ITEM 2(DETAIL PAGE)-->
+
+  </div>
+</div>
+    
+         
+                      
+</div>
+                      
+<!--        TAB HOUSE-->
+    <div role="tabpanel" class="tab-pane" id="House">
+    
+
+                            
+  <div id="myCarousel2" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div style="" class="well">
+           <div style="background-color:#f2f2f2;" class="well">
+
+                        <h4 style="display:inline;">Legislator By House</h4>
+                       <div style="float:right;" class="input-group">
+                            <input  type="text" class="form-control" placeholder="Search" ng-model="search">
+
+                        </div>
+            </div>
+                        
+<!--  <div style="float: right;" class="input-group-addon"><i class="fa fa-search"></i></div>-->
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form style="float: right;display:inline;">
+                    <div class="form-group">
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:1000px; overflow-y:auto">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Party</th>
+                        <th>Name</th>
+                        <th>Chamber </th>
+                        <th> Distrct</th>
+                        <th>State</th>
+                        <th> Button</th>
+                    </tr>
+                    <tr dir-paginate="x in population | orderBy:[sortType2] | filter:search | filter:house:true  |  itemsPerPage:10"  pagination-id="population">
+                        <td><div id="party">
+                            <img src="images/{{x.party}}.png" class="img-responsive" alt="N.A.">
+                            
+                        </div></td>
+                        <td>{{x.last_name+", "+x.first_name}}</td>
+                        <td>
+                            <img src="images/{{x.chamber}}.png" class="img-responsive" alt="N.A.">
+                            {{x.chamber}}
+                            </td>
+                        <td>District {{x.district}}</td>
+                        <td>{{x.state_name}}</td>
+                        <td><button type="button" ng-click="detail(x.bioguide_id,x.title,x.first_name,x.last_name,x.oc_email,x.chamber,x.phone,x.party,x.term_start,x.term_end,x.office,x.state_name,x.fax,x.birthday,x.twitter_id,x.facebook_id,x.website)" class="btn btn-primary" class="carousel-control left" href="#myCarousel2" data-slide="next">View Details</button></td>
+
+                    </tr>
+                </table>
+        <center>
+                    <dir-pagination-controls max-size="10" boundary-links="true" direction-links="true" pagination-id="population"></dir-pagination-controls>
+                </center>
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+<!--      start Carousel ITEM 2(DETAIL PAGE)-->
+    <div class="item">
+      <div class="well">
+        
+
+        <button type="button" class="btn btn-default" class="carousel-control left" href="#myCarousel2" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+          
+          
+         <h4 style="display:inline;">Details</h4>
+        <button type="button" onclick="fav_btn();" style="float: right;"  class="btn btn-default">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+
+        </button>
+
+          <br>
+                    <br>
+          
+
+          <div style="display:inline;" class="l_bioguide_id"></div>
+          
+<!--          first top small table detail info-->
+          <table style="display:inline;" class="table table-hover">
+              <tr><td> <div class="l_name"></div></td>
+              </tr>
+              <tr><td> <div class="l_email"></div></td>
+              </tr>
+
+              <tr><td> Chamber:<div class="l_chamber"></div></td>
+              </tr>
+              
+                <tr><td> <div class="l_phone"></div></td>
+              </tr>
+              
+                <tr><td> <div class="l_party"></div></td>
+              </tr>
+          </table>
+          
+                    <br>
+<!--          SECOND bottom  table detail info-->
+          <table style="" class="table table-hover">
+              <tr><th>Start Term</th>
+                  <td> <div class="l_start"></div></td>
+              </tr>
+              <tr><th>End Term</th><td> <div class="l_end"></div></td>
+              </tr>
+
+              <tr><th>Term</th><td> <div class="l_term">
+                    
+                  </div></td>
+              </tr>
+              
+                <tr><th>Office</th><td> <div class="l_office"></div></td>
+              </tr>
+              
+                <tr><th>State</th><td> <div class="l_state"></div></td>
+              </tr>
+              <tr><th>Fax</th><td> <div class="l_fax"></div></td>
+              </tr>
+                <tr><th>Birthday</th><td> <div class="l_bday"></div></td>
+              </tr>
+               <tr><th>Social Links</th><td> <div class="l_social"></div></td>
+              </tr>
+
+          </table>
+
+        </div>
+      </div>    
+<!--      end Carousel ITEM 2(DETAIL PAGE)-->
+
+  </div>
+</div>
+    
+            
+    
+    
+    </div>
+
+
+<!--           TAB SENATE-->
+        <div role="tabpanel" class="tab-pane" id="Senate">
+       
+                                   
+  <div id="myCarousel3" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div style="" class="well">
+           <div style="background-color:#f2f2f2;" class="well">
+
+                        <h4 style="display:inline;">Legislator By Senate</h4>
+                       <div style="float:right;" class="input-group">
+                            <input  type="text" class="form-control" placeholder="Search" ng-model="search_s">
+
+                        </div>
+            </div>
+                        
+<!--  <div style="float: right;" class="input-group-addon"><i class="fa fa-search"></i></div>-->
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form style="float: right;display:inline;">
+                    <div class="form-group">
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:1000px; overflow-y:auto">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Party</th>
+                        <th>Name</th>
+                        <th>Chamber </th>
+                        <th>State</th>
+                        <th> Button</th>
+                    </tr>
+                    <tr dir-paginate="x in population | orderBy:[sortType2] | filter:search_s | filter:senate:true  |  itemsPerPage:10"  pagination-id="population">
+                        <td><div id="party">
+                            <img src="images/{{x.party}}.png" class="img-responsive" alt="N.A.">
+                            
+                        </div></td>
+                        <td>{{x.last_name+", "+x.first_name}}</td>
+                        <td>
+                            <img src="images/{{x.chamber}}.png" class="img-responsive" alt="N.A.">
+                            {{x.chamber}}
+                            </td>
+                        <td>{{x.state_name}}</td>
+                        <td><button type="button" ng-click="detail(x.bioguide_id,x.title,x.first_name,x.last_name,x.oc_email,x.chamber,x.phone,x.party,x.term_start,x.term_end,x.office,x.state_name,x.fax,x.birthday,x.twitter_id,x.facebook_id,x.website)" class="btn btn-primary" class="carousel-control left" href="#myCarousel3" data-slide="next">View Details</button></td>
+
+                    </tr>
+                </table>
+        <center>
+                    <dir-pagination-controls max-size="10" boundary-links="true" direction-links="true" pagination-id="population"></dir-pagination-controls>
+                </center>
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+<!--      start Carousel ITEM 2(DETAIL PAGE)-->
+    <div class="item">
+      <div class="well">
+        
+
+        <button type="button" class="btn btn-default" class="carousel-control left" href="#myCarousel3" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+          
+          
+         <h4 style="display:inline;">Details</h4>
+        <button type="button" onclick="fav_btn();" style="float: right;"  class="btn btn-default">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+
+        </button>
+
+          <br>
+                    <br>
+          
+
+          <div style="display:inline;" class="l_bioguide_id"></div>
+          
+<!--          first top small table detail info-->
+          <table style="display:inline;" class="table table-hover">
+              <tr><td> <div class="l_name"></div></td>
+              </tr>
+              <tr><td> <div class="l_email"></div></td>
+              </tr>
+
+              <tr><td> Chamber:<div class="l_chamber"></div></td>
+              </tr>
+              
+                <tr><td> <div class="l_phone"></div></td>
+              </tr>
+              
+                <tr><td> <div class="l_party"></div></td>
+              </tr>
+          </table>
+          
+                    <br>
+<!--          SECOND bottom  table detail info-->
+          <table style="" class="table table-hover">
+              <tr><th>Start Term</th>
+                  <td> <div class="l_start"></div></td>
+              </tr>
+              <tr><th>End Term</th><td> <div class="l_end"></div></td>
+              </tr>
+
+              <tr><th>Term</th><td> <div class="l_term">
+                    
+                  </div></td>
+              </tr>
+              
+                <tr><th>Office</th><td> <div class="l_office"></div></td>
+              </tr>
+              
+                <tr><th>State</th><td> <div class="l_state"></div></td>
+              </tr>
+              <tr><th>Fax</th><td> <div class="l_fax"></div></td>
+              </tr>
+                <tr><th>Birthday</th><td> <div class="l_bday"></div></td>
+              </tr>
+               <tr><th>Social Links</th><td> <div class="l_social"></div></td>
+              </tr>
+
+          </table>
+
+        </div>
+      </div>    
+<!--      end Carousel ITEM 2(DETAIL PAGE)-->
+
+  </div>
+</div>
+    
+       
+       </div>
+
+
+
+<!--           TAB SENATE-->
+
+</div>
+
+            </div>
+            
+             
+
+        </div>
+        </div>
+        
+         <div id="page_bill">
+             <div class="col-sm-9"  id="right" >
+            <h1>Bills</h1>
+            <div>
+
+              <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#bill1" aria-controls="state" role="tab" data-toggle="tab">Active Bill</a></li>
+                    <li role="presentation"><a href="#bill2" aria-controls="House" role="tab" data-toggle="tab">New Bills</a></li>
+                  </ul>
+
+<!-- Tab panes -->
+                
+   <div class="tab-content">
+       <!--        TAB1 BIL-->
+
+  <div role="tabpanel" class="tab-pane active" id="bill1">
+                        
+                            <div id="myCarousel_b1" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div style="" class="well">
+               <div style="background-color:#f2f2f2;" class="well">
+
+                        <h4 style="display:inline;">Active Bills</h4>
+                       <div style="float:right;" class="input-group">
+                            <input  type="text" class="form-control" placeholder="Search" ng-model="search_b1">
+
+                        </div>
+            </div>
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:1200px; overflow-y:auto">
+                <table   class="table table-hover">
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Bill Type</th>
+                        <th>Title </th>
+                        <th> Chamber</th>
+                        <th>Introduced On</th>
+                        <th>Sponsor</th>
+                    </tr>
+                    <tr dir-paginate="x in bills |  filter:search_b1 |   itemsPerPage:10"  pagination-id="bills">
+                        <td>{{x.bill_id}}</td>
+                        <td>{{x.bill_type}}</td>
+                        <td>{{x.official_title}}</td>
+                        <td>
+                            <img src="images/{{x.chamber}}.png" class="img-responsive" alt="N.A.">
+                            {{x.chamber}}
+                            </td>
+                        <td><div class="dateConvert">{{x.introduced_on}}</div></td>
+                        <td>{{x.sponsor.title}}. {{x.sponsor.last_name}}, {{x.sponsor.first_name}}</td>
+                        <td><button type="button" ng-click="detail_b(x.bill_id,x.official_title,x.bill_type,x.sponsor.title,x.sponsor.last_name,x.sponsor.first_name,x.chamber,x.history.active,x.introduced_on,x.urls.congress,x.last_version.version_name,x.last_version.urls.pdf)" class="btn btn-primary" class="carousel-control left" href="#myCarousel_b1" data-slide="next">View Details</button></td>
+
+                        
+                        
+                        
+                    </tr>
+                </table>
+        <center>
+                    <dir-pagination-controls max-size="10" boundary-links="true" direction-links="true" pagination-id="bills"></dir-pagination-controls>
+                </center>
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+<!--      start Carousel ITEM 2(DETAIL PAGE)-->
+    <div class="item">
+      <div class="well">
+        
+
+        <button type="button" class="btn btn-default" class="carousel-control left" href="#myCarousel_b1" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+          
+          
+         <h4 style="display:inline;">Details</h4>
+        <button type="button" onclick="fav_btn_bill();" style="float: right;"  class="btn btn-default">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+
+        </button>
+
+          <br>
+                    <br>
+          
+
+
+<!--          SECOND bottom  table detail info-->
+          <div class="col-sm-5" style="display:inline;">
+          <table style="" class="table table-hover">
+              <tr><th>Bill ID</th>
+                  <td> <div class="b_id"></div></td>
+              </tr>
+              <tr><th>Title</th><td> <div class="b_title"></div></td>
+              </tr>
+
+              <tr><th>Bill Type</th><td> <div class="b_type">
+                    
+                  </div></td>
+              </tr>
+              
+                <tr><th>Sponsor</th><td> <div class="b_sponsor"></div></td>
+              </tr>
+              
+                <tr><th>Chamber</th><td> <div class="b_chamber"></div></td>
+              </tr>
+              <tr><th>Status</th><td> <div class="b_status"></div></td>
+              </tr>
+                <tr><th>Introduced On</th><td> <div class="b_date"></div></td>
+              </tr>
+               <tr><th>Congress URL</th><td> <div class="b_c_url"></div></td>
+              </tr>
+              <tr><th>Version Status</th><td> <div class="b_version"></div></td>
+              </tr>
+              <tr><th>Bill URL</th><td> <div class="b_b_url"></div></td>
+              </tr>
+
+          </table>
+</div>
+          <div class="col-sm-7" style="display:inline;">
+           <div style="display:inline;" class="b_pdf"></div>
+          </div>
+          
+        </div>
+      </div>    
+<!--      end Carousel ITEM 2(DETAIL PAGE)-->
+
+  </div>
+</div>
+    
+         
+                      
+</div>
+                      
+<!--        TAB BILL 2-->
+    <div role="tabpanel" class="tab-pane" id="bill2">
+    
+<div id="myCarousel_b2" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div style="" class="well">
+               <div style="background-color:#f2f2f2;" class="well">
+
+                        <h4 style="display:inline;">Active Bills</h4>
+                       <div style="float:right;" class="input-group">
+                            <input  type="text" class="form-control" placeholder="Search" ng-model="search_b2">
+
+                        </div>
+            </div>
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:1200px; overflow-y:auto">
+                <table   class="table table-hover">
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Bill Type</th>
+                        <th>Title </th>
+                        <th> Chamber</th>
+                        <th>Introduced On</th>
+                        <th>Sponsor</th>
+                    </tr>
+                    <tr dir-paginate="x in bills | orderBy:sortType3:reverse | filter:false | filter:search_b2 |   itemsPerPage:10"  pagination-id="bills2">
+                        <td>{{x.bill_id}}</td>
+                        <td>{{x.bill_type}}</td>
+                        <td>{{x.official_title}}</td>
+                        <td>
+                            <img src="images/{{x.chamber}}.png" class="img-responsive" alt="N.A.">
+                            {{x.chamber}}
+                            </td>
+                        <td><div class="dateConvert">{{x.introduced_on}}</div></td>
+                        <td>{{x.sponsor.title}}. {{x.sponsor.last_name}}, {{x.sponsor.first_name}}</td>
+                        <td><button type="button" ng-click="detail_b(x.bill_id,x.official_title,x.bill_type,x.sponsor.title,x.sponsor.last_name,x.sponsor.first_name,x.chamber,x.history.active,x.introduced_on,x.urls.congress,x.last_version.version_name,x.last_version.urls.pdf)" class="btn btn-primary" class="carousel-control left" href="#myCarousel_b2" data-slide="next">View Details</button></td>
+
+                        
+                        
+                        
+                    </tr>
+                </table>
+        <center>
+                    <dir-pagination-controls max-size="10" boundary-links="true" direction-links="true" pagination-id="bills2"></dir-pagination-controls>
+                </center>
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+<!--      start Carousel ITEM 2(DETAIL PAGE)-->
+    <div class="item">
+      <div class="well">
+        
+
+        <button type="button" class="btn btn-default" class="carousel-control left" href="#myCarousel_b2" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+          
+          
+         <h4 style="display:inline;">Details</h4>
+        <button type="button" onclick="fav_btn_bill();" style="float: right;"  class="btn btn-default">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+
+        </button>
+
+          <br>
+                    <br>
+          
+
+
+<!--          SECOND bottom  table detail info-->
+          <div class="col-sm-5" style="display:inline;">
+          <table style="" class="table table-hover">
+              <tr><th>Bill ID</th>
+                  <td> <div class="b_id"></div></td>
+              </tr>
+              <tr><th>Title</th><td> <div class="b_title"></div></td>
+              </tr>
+
+              <tr><th>Bill Type</th><td> <div class="b_type">
+                    
+                  </div></td>
+              </tr>
+              
+                <tr><th>Sponsor</th><td> <div class="b_sponsor"></div></td>
+              </tr>
+              
+                <tr><th>Chamber</th><td> <div class="b_chamber"></div></td>
+              </tr>
+              <tr><th>Status</th><td> <div class="b_status"></div></td>
+              </tr>
+                <tr><th>Introduced On</th><td> <div class="b_date"></div></td>
+              </tr>
+               <tr><th>Congress URL</th><td> <div class="b_c_url"></div></td>
+              </tr>
+              <tr><th>Version Status</th><td> <div class="b_version"></div></td>
+              </tr>
+              <tr><th>Bill URL</th><td> <div class="b_b_url"></div></td>
+              </tr>
+
+          </table>
+</div>
+          <div class="col-sm-7" style="display:inline;">
+           <div style="display:inline;" class="b_pdf"></div>
+          </div>
+          
+        </div>
+      </div>    
+<!--      end Carousel ITEM 2(DETAIL PAGE)-->
+
+  </div>
+</div>
+    
+  
+            
+    
+    
+    </div>
+
+<!--      END  TAB HOUSE-->
+
+
+</div>
+
+            </div>
+            
+             
+
+        </div>
+        </div>
+        
+        
+      <div id="page_com">
+          
+             <div class="col-sm-9"  id="right" >
+            <h1>Committees</h1>
+            <div>
+
+              <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#com1" aria-controls="state" role="tab" data-toggle="tab">House</a></li>
+                    <li role="presentation"><a href="#com2" aria-controls="House" role="tab" data-toggle="tab">Senate</a></li>
+                  </ul>
+
+<!-- Tab panes -->
+                
+   <div class="tab-content">
+       <!--        TAB1 BIL-->
+
+  <div role="tabpanel" class="tab-pane active" id="com1">
+                        
+                            <div id="myCarousel_c1" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div style="" class="well">
+               <div style="background-color:#f2f2f2;" class="well">
+
+                        <h4 style="display:inline;">House</h4>
+                       <div style="float:right;" class="input-group">
+                            <input  type="text" class="form-control" placeholder="Search" ng-model="search_c1">
+
+                        </div>
+            </div>
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:1200px; overflow-y:auto">
+                <table   class="table table-hover">
+                    <tr>
+                        <th> </th>
+                        <th>Chamber</th>
+                        <th>Committee ID</th>
+                        <th>Name </th>
+                        <th> Parent Committee</th>
+                        <th>Contact</th>
+                        <th>Office</th>
+                    </tr>
+                    <tr dir-paginate="x in com | filter:search_c1 | filter:house:true |  itemsPerPage:10"  pagination-id="com">
+                        <td><button type="button" onclick="fav_btn_com();" style="float: right;"  class="btn btn-default">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </button></td>
+                        <td>
+                            <img src="images/{{x.chamber}}.png" class="img-responsive" alt="N.A.">
+                            {{x.chamber}}
+                            </td>
+                        
+                        <td>{{x.committee_id}}</td>
+                        <td>{{x.name}}</td>
+                        <td>{{x.parent_committee_id}}</td>
+                        
+                        <td>{{x.phone}}</td>
+                        <td>{{x.office}}</td>
+                        
+
+                        
+                        
+                        
+                    </tr>
+                </table>
+        <center>
+                    <dir-pagination-controls max-size="10" boundary-links="true" direction-links="true" pagination-id="com"></dir-pagination-controls>
+                </center>
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+<!--      start Carousel ITEM 2(DETAIL PAGE)-->
+     
+<!--      end Carousel ITEM 2(DETAIL PAGE)-->
+
+  </div>
+</div>
+    
+         
+                      
+</div>
+                      
+<!--        TAB BILL 2-->
+    <div role="tabpanel" class="tab-pane" id="com2">
+    
+  <div id="myCarousel_c2" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div style="" class="well">
+               <div style="background-color:#f2f2f2;" class="well">
+
+                        <h4 style="display:inline;">House</h4>
+                       <div style="float:right;" class="input-group">
+                            <input  type="text" class="form-control" placeholder="Search" ng-model="search_c2">
+
+                        </div>
+            </div>
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:1200px; overflow-y:auto">
+                <table   class="table table-hover">
+                    <tr>
+                        <th> </th>
+                        <th>Chamber</th>
+                        <th>Committee ID</th>
+                        <th>Name </th>
+                        <th> Parent Committee</th>
+                    </tr>
+                    <tr dir-paginate="x in com | filter:search_c2 | filter:senate:true |  itemsPerPage:10"  pagination-id="com2">
+                        <td><button type="button" onclick="fav_btn_com();" style="float: right;"  class="btn btn-default">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </button></td>
+                        <td>
+                            <img src="images/{{x.chamber}}.png" class="img-responsive" alt="N.A.">
+                            {{x.chamber}}
+                            </td>
+                        
+                        <td>{{x.committee_id}}</td>
+                        <td>{{x.name}}</td>
+                        <td>{{x.parent_committee_id}}</td>
+                        
+
+                        
+
+                        
+                        
+                        
+                    </tr>
+                </table>
+        <center>
+                    <dir-pagination-controls max-size="10" boundary-links="true" direction-links="true" pagination-id="com2"></dir-pagination-controls>
+                </center>
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+<!--      start Carousel ITEM 2(DETAIL PAGE)-->
+     
+<!--      end Carousel ITEM 2(DETAIL PAGE)-->
+
+  </div>
+</div>
+    
+            
+    
+    
+    </div>
+
+<!--      END  TAB HOUSE-->
+
+
+</div>
+
+            </div>
+            
+             
+
+        </div>
+        </div>
+        
+        
+         <div id="page_fav">
+               <div class="col-sm-9"  id="right" >
+            <h1>Favorite</h1>
+            <div>
+
+              <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#t1" aria-controls="state" role="tab" data-toggle="tab">Lagislators</a></li>
+                    <li role="presentation"><a href="#t2" aria-controls="House" role="tab" data-toggle="tab">Bills</a></li>
+                    <li role="presentation"><a href="#t3" aria-controls="Senate" role="tab" data-toggle="tab">Committees</a></li>
+                  </ul>
+
+              <!-- Tab panes -->
+<!--                FIRST STATE TAB-->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="t1">
+                        
+                            <div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div class="well">
+                        
+                        <h4 style="display:inline;">Favorite Legistators</h4>
+                          
+                       
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:400px; overflow-y:auto">
+                <table id="f_table_leg" class="table table-hover">
+                    <tr>
+                        <th>Delete</th>
+                        <th>Image</th>
+                        <th>Party</th>
+                        <th>Name </th>
+                        <th> Chamber</th>
+                        <th>State</th>
+                        <th> Email</th>
+                        <th> Button</th>
+                    </tr>
+                    
+                    <div id=""></div>
+                  
+                </table>
+    
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+
+
+  </div>
+</div>
+    
+                      
+                     
+                      
+                      
+                      
+                      
+</div>
+                      
+<!--        TAB 2biLL FAV-->
+<div role="tabpanel" class="tab-pane" id="t2">
+    <div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div class="well">
+                        
+                        <h4 style="display:inline;">Favorite Bills</h4>
+                          
+                       
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:400px; overflow-y:auto">
+                <table id="f_table_bill" class="table table-hover">
+                    <tr>
+                        <th></th>
+                        <th>Bill ID</th>
+                        <th>Bill Type</th>
+                        <th>Title </th>
+                        <th> Chamber</th>
+                        <th>Introduced On</th>
+                        <th> Sponsor</th>
+                        <th> </th>
+                    </tr>
+                    
+                    <div id=""></div>
+                  
+                </table>
+    
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+
+
+  </div>
+</div>
+
+    
+    
+    
+    </div>
+
+
+
+
+
+
+
+
+
+<!--           TAB SENATE-->
+                    <div role="tabpanel" class="tab-pane" id="t3">
+                        <div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item">
+      
+<!--      ACTIVE ITEM1-->
+      
+      
+        <div class="well">
+                        
+                        <h4 style="display:inline;">Favorite Committees</h4>
+                          
+                       
+
+<!--
+                          <select style="float: right;" class="custom-select">
+                              <option selected>All States</option>
+                              <option value="AL">Alabama</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+-->
+                        
+
+                  <!--ANGULAR JS SERACH CONTENT-->      
+            <form>
+                    <div class="form-group">
+                        <div class="input-group">
+    <!--                        <div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+    <!--                        <input type="text" class="form-control" placeholder="Search" ng-model="search">-->
+                        </div>
+                    </div>
+            </form>
+            <div>
+<!--                TABLE-->
+            <div style="max-height:400px; overflow-y:auto">
+                <table id="f_table_leg" class="table table-hover">
+                    <tr>
+                        <th>Delete</th>
+                        <th>Image</th>
+                        <th>Party</th>
+                        <th>Name </th>
+                        <th> Chamber</th>
+                        <th>State</th>
+                        <th> Email</th>
+                        <th> Button</th>
+                    </tr>
+                    
+                    <div id=""></div>
+                  
+                </table>
+    
+            </div>
+            </div>
+  
+            </div>
+            <!--END ANGULAR JS SERACH CONTENT-->                    
+                      
+                       
+      
+      
+      
+ <!--    end  ACTIVE ITEM1-->
+ 
+      </div>
+      
+
+
+  </div>
+</div>
+    
+                      
+                      
+                      </div>
+
+
+
+<!--           TAB SENATE-->
+
+                  </div>
+
+            </div>
+            
+             
+
+        </div>
+        </div>
+      
+    </div>
+</div>
+    </div>
+</body>
+</html>
+
